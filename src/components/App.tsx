@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 
 import { LanguagesContext } from "../core/contexts/LanguageContext";
+import { SingleNewsContextProvider } from "../core/contexts/SingleNewsContext";
 import { getTopHeadlines } from "../core/top-headlines";
 import { routes } from "../router";
 import { AppHeader } from "./common/AppHeader";
@@ -19,11 +20,13 @@ const App = () => {
     <>
       <AppHeader />
       <main className="AppMain">
-        <Switch>
-          {routes.map((route, index) => (
-            <Route key={index} path={route.path} component={route.component} exact />
-          ))}
-        </Switch>
+        <SingleNewsContextProvider>
+          <Switch>
+            {routes.map((route, index) => (
+              <Route key={index} path={route.path} component={route.component} exact />
+            ))}
+          </Switch>
+        </SingleNewsContextProvider>
       </main>
     </>
   );

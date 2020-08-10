@@ -3,5 +3,18 @@
     "HomeView": "Top News",
     "CategoriesView": "Categories",
     "SearchView": "Search"
+  },
+  "HomeView": {
+    "title": "Top news from",
+    "no-items": "Something went wrong while we were searching for the news. Please try again later."
+  },
+  "SingleNewsView": {
+    "no-news-title": "Oops, we lost that news. While we are searching for it, please check our other news."
+  },
+  "NewsThumbnail": {
+    "more": "More"
+  },
+  "GoBack": {
+    "back-to-list": "Back go"
   }
 }
