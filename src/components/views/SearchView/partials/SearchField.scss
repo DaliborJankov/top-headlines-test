@@ -1,0 +1,27 @@
+@import "./../../../../scss/helper/index.scss";
+
+.SearchField {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+
+  @include tablet {
+    padding-top: 2rem;
+  }
+
+  &__input {
+    @extend %transition-favorite;
+    max-width: 27rem;
+    width: 100%;
+    font-family: inherit;
+    font-size: 1.2rem;
+    padding: 0.3rem 0.5rem;
+    border-radius: 0.25rem;
+    border: 0.125rem solid $main-text-color;
+
+    &:focus {
+      border-color: $primary-color;
+      outline: none;
+    }
+  }
+}

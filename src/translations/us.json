@@ -8,8 +8,18 @@
     "title": "Top news from",
     "no-items": "Something went wrong while we were searching for the news. Please try again later."
   },
+  "SearchView": {
+    "title": "Top news from",
+    "search-term": "Search term...",
+    "error-message": "Something went wrong while we were searching for the news. Please try again later.",
+    "no-items": "We can't find any articles related to that term. Please try again."
+  },
   "SingleNewsView": {
     "no-news-title": "Oops, we lost that news. While we are searching for it, please check our other news."
+  },
+  "Language": {
+    "gb": "Great Britain",
+    "us": "United States"
   },
   "NewsThumbnail": {
     "more": "More"
