@@ -1,1 +1,53 @@
 @import "default-extensions";
+
+@mixin page {
+  padding-bottom: 3rem;
+
+  &__header {
+    margin-bottom: 2rem;
+  }
+
+  &__title {
+    font-size: 1.275rem;
+    line-height: 1.2;
+
+    @include tablet {
+      font-size: 1.7rem;
+      line-height: 1.4;
+    }
+  }
+
+  &__body {
+    padding: 0 1rem;
+
+    @include desktop {
+      max-width: 80%;
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+}
+
+@mixin card {
+  @extend %transition-favorite;
+  background-color: $white;
+  padding: 1.5rem 1rem;
+  border: 0.1rem solid #e3e3e3;
+  box-shadow: none;
+
+  &:hover {
+    box-shadow: 0rem 0rem 1rem 0.1rem rgba(0, 0, 0, 0.5);
+    border-color: transparent;
+  }
+
+  &__title {
+    font-size: 1.2rem;
+    color: $card-title-color;
+  }
+
+  &__text {
+    font-size: 1rem;
+    line-height: 1.4;
+    color: $card-description-color;
+  }
+}

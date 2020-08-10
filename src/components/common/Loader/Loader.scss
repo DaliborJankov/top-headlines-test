@@ -1,0 +1,47 @@
+@import "./../../../scss/helper/index.scss";
+
+.Loader {
+  @extend %flex-centered;
+
+  &__bounce {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    background-color: $primary-color;
+    border-radius: 50%;
+    animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+
+    &--1 {
+      animation-delay: -0.32s;
+    }
+
+    &--2 {
+      animation-delay: -0.16s;
+    }
+  }
+
+  &--hidden {
+    @extend %absolute;
+    transform: scale(1, 0);
+    opacity: 0;
+    transition: margin 0.1s 0.15s linear, opacity 0.2s linear;
+  }
+
+  &--visible {
+    transform: scale(1, 1);
+    opacity: 1;
+    transition: opacity 0.2s 0.15s linear, margin 0.1s linear;
+  }
+}
+
+@keyframes sk-bouncedelay {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+
+  40% {
+    transform: scale(1);
+  }
+}
