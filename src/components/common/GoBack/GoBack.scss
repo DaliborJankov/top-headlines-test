@@ -1,0 +1,31 @@
+@import "./../../../scss/helper/index.scss";
+
+.GoBack {
+  padding: 2rem 0;
+
+  &__button {
+    background-color: transparent;
+    border: none;
+    color: $primary-color;
+
+    &:hover {
+      color: $secondary-color;
+
+      .GoBack__icon {
+        border-color: $secondary-color;
+        transform: rotate(45deg) translate(-30%, 30%);
+      }
+    }
+  }
+
+  &__icon {
+    @extend %transition-favorite;
+    display: inline-block;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-left: 0.1rem solid $primary-color;
+    border-bottom: 0.1rem solid $primary-color;
+    margin-right: 0.25rem;
+    transform: rotate(45deg);
+  }
+}
