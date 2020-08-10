@@ -1,0 +1,54 @@
+@import "./../../../../scss/helper/index.scss";
+
+.AppNavigation {
+  @extend %transition-favorite;
+  @extend %absolute;
+  top: 100%;
+  width: 100%;
+  transform: scale(1, 0);
+  transform-origin: top center;
+  box-shadow: 0rem 0.5rem 0.5rem rgba(0, 0, 0, 0.2);
+
+  &--open {
+    transform: scale(1, 1);
+  }
+
+  &__list {
+    @extend %transition-favorite;
+    display: flex;
+    flex-direction: column;
+    background-color: $primary-color;
+    padding-bottom: 0.5rem;
+  }
+
+  &__link {
+    display: block;
+    padding: 1rem 0.5rem;
+    text-align: center;
+
+    &:hover {
+      color: $white;
+    }
+
+    &--active {
+      color: $white;
+      background-color: $secondary-color;
+    }
+  }
+
+  @include tablet {
+    position: static;
+    transform: scale(1, 1);
+    box-shadow: none;
+
+    &__list {
+      flex-direction: row;
+      align-items: center;
+      padding-bottom: 0;
+    }
+
+    &__link {
+      padding: 1.5rem 0.5rem;
+    }
+  }
+}
