@@ -1,7 +1,9 @@
 import { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 
-import { Language, allowedLanguages } from "../environment";
+import { API_KEY, Language, ROOT_URL, allowedLanguages } from "../environment";
+
+export const MAKE_URL = (urlPartial: string) => `${ROOT_URL}${urlPartial}${API_KEY}`;
 
 export function useDeepTranslation(rootKey?: string) {
   const { t, ...restFromI18n } = useTranslation();
