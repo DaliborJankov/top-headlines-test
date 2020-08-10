@@ -17,6 +17,9 @@
   "SingleNewsView": {
     "no-news-title": "Oops, we lost that news. While we are searching for it, please check our other news."
   },
+  "NoView": {
+    "title": "Oops, we lost that page. Please go back and try again."
+  },
   "Language": {
     "gb": "Great Britain",
     "us": "United States"
