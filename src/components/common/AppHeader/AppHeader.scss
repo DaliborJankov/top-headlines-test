@@ -1,0 +1,25 @@
+@import "./../../../scss/helper/index.scss";
+
+.AppHeader {
+  @extend %relative;
+  display: flex;
+  justify-content: space-between;
+  background-color: $primary-color;
+  box-shadow: 0rem 0rem 0.5rem 0.2rem rgba(0, 0, 0, 0.2);
+  margin-bottom: 2rem;
+  z-index: 2;
+
+  &__main {
+    display: flex;
+    align-items: center;
+  }
+
+  @include tablet {
+    margin-bottom: 3rem;
+    padding: 0 2rem;
+  }
+
+  @include desktop {
+    padding: 0 4rem;
+  }
+}

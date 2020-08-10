@@ -1,0 +1,43 @@
+@import "./../../../../scss/helper/index.scss";
+
+.Languages {
+  &__list {
+    display: flex;
+    height: 100%;
+  }
+
+  &__item {
+    &:not(:last-of-type) {
+      .Languages__button {
+        border-right: 0.1px solid $black;
+      }
+    }
+  }
+
+  &__button {
+    height: 100%;
+    font-family: inherit;
+    font-size: 1rem;
+    text-transform: uppercase;
+    background-color: $white;
+    border: none;
+    padding: 1rem;
+
+    &--active {
+      background-color: $black;
+      border-color: $black;
+      color: $white;
+    }
+
+    &:disabled {
+      background-color: #cd5c5c;
+      border-color: #cd5c5c;
+      color: #e3e3e3;
+      cursor: not-allowed;
+    }
+
+    @include tablet {
+      padding: 1.5rem;
+    }
+  }
+}
