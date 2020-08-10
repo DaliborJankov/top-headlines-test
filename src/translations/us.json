@@ -8,6 +8,16 @@
     "title": "Top news from",
     "no-items": "Something went wrong while we were searching for the news. Please try again later."
   },
+  "CategoriesView": {
+    "title": "Top 5 news by categories from",
+    "error-message": "Something went wrong while we were searching for the {{category}} news. Please try again later.",
+    "entertainment": "entertainment",
+    "general": "general",
+    "health": "health",
+    "science": "science",
+    "sports": "sports",
+    "technology": "technology"
+  },
   "SearchView": {
     "title": "Top news from",
     "search-term": "Search term...",
