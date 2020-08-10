@@ -1,0 +1,113 @@
+@import "./helper/index.scss";
+
+* {
+  box-sizing: border-box;
+  color: inherit;
+  text-decoration: none;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body,
+#root {
+  min-height: 100vh;
+}
+
+body {
+  background-color: $body-bg;
+  color: $main-text-color;
+  font-family: $font-family-primary;
+  line-height: 1;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: initial;
+}
+
+p {
+  line-height: 1.4;
+  margin: 0;
+}
+
+*:not(a),
+*:not(button) {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  ::-moz-selection {
+    color: $white;
+    background: $primary-color;
+  }
+  ::selection {
+    color: $white;
+    background: $primary-color;
+  }
+}
+
+input:focus {
+  outline: none;
+}
+
+#root {
+  @extend %relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.AppMain {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 100%;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0;
+}
+
+a,
+button,
+input[type="submit"] {
+  transition: all 0.1s;
+  margin: 0;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  @include tablet {
+    transition: all 0.4s;
+  }
+}
+
+button {
+  touch-action: manipulation;
+}
+
+picture,
+figure {
+  display: block;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  margin: auto;
+}

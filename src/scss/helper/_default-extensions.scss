@@ -1,0 +1,62 @@
+@import "main-variables";
+
+%font-bold {
+  font-weight: bold;
+}
+
+//position setup
+%relative {
+  position: relative;
+}
+
+%absolute {
+  position: absolute;
+}
+
+%fixed {
+  position: fixed;
+}
+
+//favorite extends
+%transition-favorite {
+  transition: all 0.4s;
+}
+
+%max-size {
+  height: 100%;
+  width: 100%;
+}
+
+%position0000 {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+%absolute0000 {
+  @extend %position0000;
+  @extend %absolute;
+}
+
+%flex-centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+%flex-absolute-centered {
+  @extend %flex-centered;
+  @extend %absolute0000;
+}
+
+%margin-right-left-auto {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+%background-image-cover {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
