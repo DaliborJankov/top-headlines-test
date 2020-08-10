@@ -1,0 +1,74 @@
+@import "./../../../scss/helper/index.scss";
+
+.Slider {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  &__button {
+    background-color: transparent;
+    border: none;
+    transition: none;
+    position: absolute;
+    z-index: 2;
+
+    &--left {
+      left: 1%;
+    }
+
+    &--right {
+      right: 1%;
+    }
+
+    &--hidden {
+      visibility: hidden;
+    }
+
+    &:hover {
+      .Slider__icon {
+        border-color: $secondary-color;
+      }
+    }
+
+    @include tablet {
+      position: static;
+    }
+  }
+
+  &__icon {
+    @extend %transition-favorite;
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-bottom: 0.2rem solid $primary-color;
+
+    &--left {
+      border-left: 0.2rem solid $primary-color;
+      transform: rotate(45deg);
+    }
+
+    &--right {
+      border-right: 0.2rem solid $primary-color;
+      transform: rotate(-45deg);
+    }
+  }
+
+  &__container {
+    overflow: hidden;
+    width: 100%;
+    padding: 1rem 0;
+    z-index: 1;
+  }
+
+  &__track {
+    @extend %transition-favorite;
+  }
+
+  &__list {
+    display: flex;
+  }
+
+  &__item {
+    padding: 0 1rem;
+  }
+}
