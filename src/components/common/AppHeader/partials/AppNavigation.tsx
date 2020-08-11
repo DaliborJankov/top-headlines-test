@@ -11,7 +11,7 @@ import "./AppNavigation.scss";
 export const AppNavigation = () => {
   const { menuOpen, setMenuOpen } = useContext(MenuContext);
   const { t } = useDeepTranslation("AppNavigation");
-  const navRoutes = routes.filter((route) => route.meta?.mainMenu);
+  const navRoutes = routes.filter(route => route.meta?.mainMenu);
 
   const history = useHistory();
 
@@ -25,9 +25,7 @@ export const AppNavigation = () => {
   };
 
   return (
-    <nav
-      className={classNames("AppNavigation", menuOpen && "AppNavigation--open")}
-    >
+    <nav className={classNames("AppNavigation", menuOpen && "AppNavigation--open")}>
       <ul className="AppNavigation__list">
         {navRoutes.map((route, index) => {
           return (

@@ -4,24 +4,20 @@ import { TopHeadlinesArticle } from "../top-headlines";
 
 interface SingleNewsInitalContext {
   currentNews: TopHeadlinesArticle | null;
-  setCurrentNews: React.Dispatch<
-    React.SetStateAction<TopHeadlinesArticle | null>
-  >;
+  setCurrentNews: React.Dispatch<React.SetStateAction<TopHeadlinesArticle | null>>;
 }
 
 const singleNewsInitialContext: SingleNewsInitalContext = {
   currentNews: null,
-  setCurrentNews: (): void => {},
+  setCurrentNews: (): void => {
+    throw Error; // to not allow empty arrow function
+  },
 };
 
-export const SingleNewsContext = createContext<SingleNewsInitalContext>(
-  singleNewsInitialContext
-);
+export const SingleNewsContext = createContext<SingleNewsInitalContext>(singleNewsInitialContext);
 
 export const SingleNewsContextProvider: React.FC = ({ children }) => {
-  const [currentNews, setCurrentNews] = useState<TopHeadlinesArticle | null>(
-    null
-  );
+  const [currentNews, setCurrentNews] = useState<TopHeadlinesArticle | null>(null);
 
   return (
     <SingleNewsContext.Provider value={{ currentNews, setCurrentNews }}>

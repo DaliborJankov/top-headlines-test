@@ -15,15 +15,9 @@ const getTopHeadlinesEpic = (action$: ActionsObservable<Action>) =>
   action$.pipe(
     ofType<Action, GetTopHeadlines>(ActionTypes.GetTopHeadlines),
     switchMap(({ payload }) =>
-      getTopHeadlinesApi(
-        payload.language,
-        payload.category,
-        payload.query
-      ).pipe(
-        map((articles: readonly TopHeadlinesArticle[]) =>
-          setTopHeadlines(articles)
-        ),
-        catchError((error) => of(setTopHeadlines(error)))
+      getTopHeadlinesApi(payload.language, payload.category, payload.query).pipe(
+        map((articles: readonly TopHeadlinesArticle[]) => setTopHeadlines(articles)),
+        catchError(error => of(setTopHeadlines(error)))
       )
     )
   );

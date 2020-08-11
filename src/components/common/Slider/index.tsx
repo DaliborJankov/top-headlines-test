@@ -36,7 +36,7 @@ export const Slider: React.FC<SliderProps> = ({ articles, responsive }) => {
     const windowWidth = window.innerWidth;
     const breakPoints = Object.keys(responsive);
 
-    breakPoints.forEach((point) => {
+    breakPoints.forEach(point => {
       if (windowWidth >= Number(point)) {
         setItemCount(responsive[Number(point)]);
         return;
@@ -79,8 +79,7 @@ export const Slider: React.FC<SliderProps> = ({ articles, responsive }) => {
   };
 
   const isDisabledButton: Record<Operator, () => boolean> = {
-    minus: () =>
-      currentTranslate === -(articles.length - itemCount) * moveSteper,
+    minus: () => currentTranslate === -(articles.length - itemCount) * moveSteper,
     plus: () => currentTranslate >= 0,
   } as const;
 

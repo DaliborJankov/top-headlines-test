@@ -13,7 +13,7 @@ export const SearchField: React.FC<SearchFieldProps> = ({ handleChange }) => {
   return (
     <div className="SearchField">
       <input
-        onChange={(e) => handleChange(e.target.value)}
+        onChange={e => handleChange(e.target.value)}
         type="text"
         className="SearchField__input"
         placeholder={t("search-term")}
