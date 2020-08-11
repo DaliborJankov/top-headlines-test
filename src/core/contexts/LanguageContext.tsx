@@ -10,17 +10,15 @@ interface LanguagesInitalContext {
 
 const languagesInitialContext: LanguagesInitalContext = {
   currentLanguage: defaultLanguage,
-  setCurrentLanguage: (): void => {},
+  setCurrentLanguage: (): void => {
+    throw Error; // to not allow empty arrow function
+  },
 };
 
-export const LanguagesContext = createContext<LanguagesInitalContext>(
-  languagesInitialContext
-);
+export const LanguagesContext = createContext<LanguagesInitalContext>(languagesInitialContext);
 
 export const LanguagesContextProvider: React.FC = ({ children }) => {
-  const [currentLanguage, setCurrentLanguage] = useState<Language>(
-    defaultLanguage
-  );
+  const [currentLanguage, setCurrentLanguage] = useState<Language>(defaultLanguage);
 
   return (
     <LanguagesContext.Provider value={{ currentLanguage, setCurrentLanguage }}>

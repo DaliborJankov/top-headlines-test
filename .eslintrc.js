@@ -46,7 +46,6 @@ module.exports = {
     "eslint-plugin-jest-dom",
   ],
   rules: {
-    // "rxjs/no-unsafe-takeuntil": "error",
     "prettier/prettier": [
       0,
       {
@@ -64,8 +63,6 @@ module.exports = {
     semi: 0,
     eqeqeq: [1, "always"],
 
-    // quotes: [1, "single"],
-    // "@typescript-eslint/interface-name-prefix": [0, { prefixWithI: "always" }],
     "jsx-quotes": [2, "prefer-double"],
     "no-extra-parens": 0,
     "no-undef": 0,
@@ -82,17 +79,6 @@ module.exports = {
     "no-confusing-arrow": 0,
     "arrow-parens": [2, "as-needed"],
     "arrow-spacing": ["error", { before: true, after: true }],
-    // "arrow-body-style": [2, "as-needed"],
-    // "no-extra-parens": [
-    //   "warn",
-    //   "all",
-    //   {
-    //     conditionalAssign: false,
-    //     nestedBinaryExpressions: false,
-    //     ignoreJSX: "none",
-    //     enforceForArrowConditionals: false
-    //   }
-    // ],
     "no-empty": 0,
     "no-param-reassign": 0,
     "prefer-template": 0,
@@ -100,7 +86,6 @@ module.exports = {
     "no-script-url": 0,
     "no-unused-expressions": 0,
     "no-mixed-operators": 0,
-    // "dot-notation": 0,
 
     "import/prefer-default-export": 0,
     "import/no-useless-path-segments": 0,
