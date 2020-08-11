@@ -21,4 +21,4 @@ Run `npm install` (`npm i`) to install all dependencies
 
 ### run the project
 
-Run the project buy runing `npm run dev`.
+Run the project by runing `npm run dev`.
