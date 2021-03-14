@@ -8,7 +8,7 @@ export const NoView = () => {
   const { t } = useDeepTranslation("NoView");
 
   return (
-    <ViewTemplate title={`${t("title")}`}>
+    <ViewTemplate title={t("title")}>
       <GoBack />
     </ViewTemplate>
   );

@@ -22,7 +22,7 @@ export const SingleNewsView = () => {
   const { t } = useDeepTranslation("SingleNewsView");
 
   return (
-    <ViewTemplate title={currentNews?.title ? currentNews.title : t("no-news-title")}>
+    <ViewTemplate title={currentNews?.title ? currentNews.title : t("no_news_title")}>
       {currentNews && (
         <>
           <figure className="SingleNewsView__figure">

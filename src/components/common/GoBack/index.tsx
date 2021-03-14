@@ -13,7 +13,7 @@ export const GoBack = () => {
     <div className="GoBack">
       <button onClick={() => history.goBack()} className="GoBack__button">
         <span className="GoBack__icon" />
-        {t("back-to-list")}
+        {t("back_to_list")}
       </button>
     </div>
   );

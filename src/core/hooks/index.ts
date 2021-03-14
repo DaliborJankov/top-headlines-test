@@ -1,33 +1,31 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Subject, of } from "rxjs";
+import { catchError, map, switchMap, tap } from "rxjs/operators";
 
-import { Language } from "../../environment";
-import { Category } from "../common";
-import { LoadableModel, failed, loaded, loading } from "../common/model";
+import { LoadableModel, defaultModel, failed, loaded, loading } from "../common/model";
 import { TopHeadlinesArticle, TopHeadlinesQueries, getTopHeadlinesApi } from "../top-headlines";
 
-function useHeadlinesMaker({ language, category, query }: TopHeadlinesQueries) {
-  const [articlesPerCategory, setArticlesPerCategory] = useState<
-    LoadableModel<readonly TopHeadlinesArticle[]>
-  >(loading([]));
+export function useHeadlines() {
+  const [articles, setArticles] = useState<LoadableModel<readonly TopHeadlinesArticle[]>>(
+    defaultModel([])
+  );
+  const articlesSubject$ = useRef(new Subject<TopHeadlinesQueries>());
 
   useEffect(() => {
-    const articles$ = getTopHeadlinesApi(language, category, query).subscribe(
-      value => setArticlesPerCategory(loaded(value)),
-      error => setArticlesPerCategory(failed(error))
-    );
+    const subscription = articlesSubject$.current
+      .pipe(
+        tap(() => setArticles(loading([]))),
+        switchMap(({ language, category, query }) =>
+          getTopHeadlinesApi(language, category, query).pipe(
+            map(loaded),
+            catchError(err => of(failed(err)))
+          )
+        )
+      )
+      .subscribe(setArticles);
 
-    return () => {
-      articles$.unsubscribe();
-    };
-  }, [language, category, query]);
+    return () => subscription.unsubscribe();
+  }, []);
 
-  return articlesPerCategory;
-}
-
-export function useHeadlinesPerCategory(language: Language, category: Category) {
-  return useHeadlinesMaker({ language, category });
-}
-
-export function useHeadlinesPerQuery(language: Language, query: string) {
-  return useHeadlinesMaker({ language, query });
+  return [articles, articlesSubject$] as const;
 }
