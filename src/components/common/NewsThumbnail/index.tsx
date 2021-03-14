@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
-import { SingleNewsContext } from "../../../core/contexts/SingleNewsContext";
+import { useSingleNewsContext } from "../../../core/contexts/SingleNewsContext";
 import { TopHeadlinesArticle } from "../../../core/top-headlines";
 import { useDeepTranslation } from "../../../utils/helper";
 
@@ -13,7 +13,7 @@ export interface NewsThumbnailProps {
 }
 
 export const NewsThumbnail: React.FC<NewsThumbnailProps> = ({ article, index }) => {
-  const { setCurrentNews } = useContext(SingleNewsContext);
+  const { setCurrentNews } = useSingleNewsContext();
   const { t } = useDeepTranslation("NewsThumbnail");
 
   return (
@@ -21,10 +21,13 @@ export const NewsThumbnail: React.FC<NewsThumbnailProps> = ({ article, index }) 
       <header className="NewsThumbnail__header">
         <h2 className="NewsThumbnail__title">{article.title}</h2>
       </header>
+
       <figure className="NewsThumbnail__figure">
         <img src={article.urlToImage} alt={article.title} className="NewsThumbnail__image" />
       </figure>
+
       <p className="NewsThumbnail__text">{article.description}</p>
+
       <div className="NewsThumbnail__action">
         <Link
           onClick={() => setCurrentNews(article)}

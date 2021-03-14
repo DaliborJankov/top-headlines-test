@@ -3,13 +3,9 @@ import React, { CSSProperties, useCallback, useEffect, useRef, useState } from "
 import { fromEvent } from "rxjs";
 import { debounceTime } from "rxjs/operators";
 
-import { TopHeadlinesArticle } from "../../../core/top-headlines";
-import { NewsThumbnail } from "../NewsThumbnail";
-
 import "./Slider.scss";
 
 interface SliderProps {
-  articles: readonly TopHeadlinesArticle[];
   /** Mobile first approach:
    *
    * Key will be the breaking point, and the value number of slides while screen is
@@ -18,7 +14,7 @@ interface SliderProps {
    * example:
    * {
    *   768: 2,
-   *   1280: 3,
+   *   1280: 3
    * }
    */
   responsive: Record<number, number>;
@@ -26,30 +22,40 @@ interface SliderProps {
 
 type Operator = "minus" | "plus";
 
-export const Slider: React.FC<SliderProps> = ({ articles, responsive }) => {
-  const SliderContainerRef = useRef<HTMLDivElement | null>(null);
-  const [moveSteper, setMoveSteper] = useState<number>(0);
-  const [itemCount, setItemCount] = useState<number>(1);
-  const [currentTranslate, setCurrentTranslate] = useState<number>(0);
+export const Slider: React.FC<SliderProps> = ({ responsive, children }) => {
+  const sliderContainerRef = useRef<HTMLDivElement | null>(null);
+  const [moveSteper, setMoveSteper] = useState(0);
+  const [activeSlides, setActiveSlides] = useState(1);
+  const [currentTranslate, setCurrentTranslate] = useState(0);
+  const slidesCount = React.Children.count(children);
 
-  const init = useCallback(() => {
+  const resolveActiveSlides = useCallback(() => {
     const windowWidth = window.innerWidth;
     const breakPoints = Object.keys(responsive);
+    if (Number(breakPoints[0]) > windowWidth) {
+      setActiveSlides(1);
+
+      return;
+    }
 
     breakPoints.forEach(point => {
       if (windowWidth >= Number(point)) {
-        setItemCount(responsive[Number(point)]);
-        return;
+        setActiveSlides(responsive[Number(point)]);
       }
     });
+  }, [responsive]);
 
-    const moveStep = SliderContainerRef.current
-      ? SliderContainerRef.current.offsetWidth / itemCount
+  const init = useCallback(() => {
+    resolveActiveSlides();
+
+    const moveStep = sliderContainerRef.current
+      ? sliderContainerRef.current.offsetWidth / activeSlides
       : 0;
 
     setMoveSteper(moveStep);
+
     setCurrentTranslate(0);
-  }, [itemCount, responsive]);
+  }, [activeSlides, resolveActiveSlides]);
 
   useEffect(() => {
     init();
@@ -63,33 +69,29 @@ export const Slider: React.FC<SliderProps> = ({ articles, responsive }) => {
     return () => resize$.unsubscribe();
   }, [init]);
 
+  const isDisabledButton: Record<Operator, boolean> = {
+    minus: currentTranslate === -(slidesCount - activeSlides) * moveSteper,
+    plus: currentTranslate >= 0,
+  };
+
   const moveTrack = (operator: Operator) => {
-    if (isDisabledButton[operator]()) {
+    if (isDisabledButton[operator]) {
       return;
     }
 
-    const calculate: Record<Operator, (a: number, b: number) => number> = {
-      minus: (a: number, b: number) => a - b,
-      plus: (a: number, b: number) => a + b,
-    } as const;
-
-    const newValue = calculate[operator](currentTranslate, moveSteper);
+    const newValue =
+      operator === "minus" ? currentTranslate - moveSteper : currentTranslate + moveSteper;
 
     setCurrentTranslate(newValue);
   };
 
-  const isDisabledButton: Record<Operator, () => boolean> = {
-    minus: () => currentTranslate === -(articles.length - itemCount) * moveSteper,
-    plus: () => currentTranslate >= 0,
-  } as const;
-
   const itemStyle: CSSProperties = {
     flex: `0 0 ${moveSteper}px`,
-  } as const;
+  };
 
   const trackTranslate: CSSProperties = {
     transform: `translate(${currentTranslate}px, 0)`,
-  } as const;
+  };
 
   return (
     <div className="Slider">
@@ -97,32 +99,30 @@ export const Slider: React.FC<SliderProps> = ({ articles, responsive }) => {
         onClick={() => moveTrack("plus")}
         className={classNames(
           "Slider__button Slider__button--left",
-          isDisabledButton["plus"]() && "Slider__button--hidden"
+          isDisabledButton["plus"] && "Slider__button--hidden"
         )}
-        disabled={isDisabledButton["plus"]()}
       >
         <span className="Slider__icon Slider__icon--left" />
       </button>
-      <div ref={SliderContainerRef} className="Slider__container">
+
+      <div ref={sliderContainerRef} className="Slider__container">
         <div style={trackTranslate} className="Slider__track">
           <ul className="Slider__list">
-            {articles.map((article, index: number) => {
-              return (
-                <li style={itemStyle} key={index} className="Slider__item">
-                  <NewsThumbnail {...{ article, index }} />
-                </li>
-              );
-            })}
+            {React.Children.map(children, (child, index) => (
+              <li style={itemStyle} key={index} className="Slider__item">
+                {child}
+              </li>
+            ))}
           </ul>
         </div>
       </div>
+
       <button
         onClick={() => moveTrack("minus")}
         className={classNames(
           "Slider__button Slider__button--right",
-          isDisabledButton["minus"]() && "Slider__button--hidden"
+          isDisabledButton["minus"] && "Slider__button--hidden"
         )}
-        disabled={isDisabledButton["minus"]()}
       >
         <span className="Slider__icon Slider__icon--right" />
       </button>

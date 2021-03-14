@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 
-import { SingleNewsContext } from "../../../core/contexts/SingleNewsContext";
+import { useSingleNewsContext } from "../../../core/contexts/SingleNewsContext";
 import { useDeepTranslation } from "../../../utils/helper";
 import { GoBack } from "../../common/GoBack";
 import { ViewTemplate } from "../../common/ViewTemplate";
@@ -18,7 +18,7 @@ export const SingleNewsView = () => {
    * where I would have to find the wanted news in news list, but relying on this could be error prone,
    * since there could be multiple news with same title
    */
-  const { currentNews } = useContext(SingleNewsContext);
+  const { currentNews } = useSingleNewsContext();
   const { t } = useDeepTranslation("SingleNewsView");
 
   return (

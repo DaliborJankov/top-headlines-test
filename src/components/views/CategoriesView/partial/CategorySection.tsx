@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Category } from "../../../../core/common";
 import { TopHeadlinesArticle } from "../../../../core/top-headlines";
 import { useDeepTranslation } from "../../../../utils/helper";
+import { NewsThumbnail } from "../../../common/NewsThumbnail";
 import { NewsThumbnailList } from "../../../common/NewsThumbnailList/NewsThumbnailList";
 import { Slider } from "../../../common/Slider";
 
@@ -15,12 +16,9 @@ interface CategorySectionProps {
   articles: readonly TopHeadlinesArticle[];
 }
 
-export const CategorySection: React.FC<CategorySectionProps> = ({
-  category,
-  articles,
-}) => {
+export const CategorySection: React.FC<CategorySectionProps> = ({ category, articles }) => {
   const { t } = useDeepTranslation("CategoriesView");
-  const [categoryExpanded, setCategoryExpanded] = useState<boolean>(false);
+  const [categoryExpanded, setCategoryExpanded] = useState(false);
 
   return (
     <div className="Category__single">
@@ -28,6 +26,7 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
         <Link className="Category__link" to={`/category/${category}`}>
           {t(category)}
         </Link>
+
         <button
           onClick={() => setCategoryExpanded(!categoryExpanded)}
           className="Category__expand-button"
@@ -40,18 +39,20 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
           />
         </button>
       </div>
+
       {categoryExpanded ? (
         <NewsThumbnailList {...{ articles }} />
       ) : (
         <Slider
-          {...{
-            articles,
-            responsive: {
-              768: 2,
-              1280: 3,
-            },
+          responsive={{
+            768: 2,
+            1280: 3,
           }}
-        />
+        >
+          {articles.map((article, index) => (
+            <NewsThumbnail key={index} {...{ article, index }} />
+          ))}
+        </Slider>
       )}
     </div>
   );

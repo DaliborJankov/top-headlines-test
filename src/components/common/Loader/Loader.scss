@@ -9,7 +9,7 @@
     height: 1rem;
     background-color: $primary-color;
     border-radius: 50%;
-    animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    animation: bounce 1.4s infinite ease-in-out both;
 
     &--1 {
       animation-delay: -0.32s;
@@ -34,7 +34,7 @@
   }
 }
 
-@keyframes sk-bouncedelay {
+@keyframes bounce {
   0%,
   80%,
   100% {

@@ -10,15 +10,12 @@ export interface TopHeadlinesQueries {
 }
 
 const urlPartial = (language: Language, category?: Category, query?: string) =>
-  `/v2/top-headlines?country=${language}${
-    category ? `&category=${category}` : ""
-  }${query ? `&q=${query}` : ""}`;
+  `/v2/top-headlines?country=${language}${category ? `&category=${category}` : ""}${
+    query ? `&q=${query}` : ""
+  }`;
 
-export const GET_TOP_HEADLINES_URL = (
-  language: Language,
-  category?: Category,
-  query?: string
-) => MAKE_URL(urlPartial(language, category, query));
+export const GET_TOP_HEADLINES_URL = (language: Language, category?: Category, query?: string) =>
+  MAKE_URL(urlPartial(language, category, query));
 
 export interface TopHeadlinesArticle {
   source: {

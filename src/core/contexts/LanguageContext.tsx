@@ -1,28 +1,22 @@
-import React, { createContext, useState } from "react";
+import React, { useMemo, useState } from "react";
 
 import { Language } from "../../environment";
+import { createSafeContext } from "../../utils/helper";
 import { defaultLanguage } from "../i18next";
 
-interface LanguagesInitalContext {
+interface LanguagesContext {
   currentLanguage: Language;
   setCurrentLanguage: React.Dispatch<React.SetStateAction<Language>>;
 }
 
-const languagesInitialContext: LanguagesInitalContext = {
-  currentLanguage: defaultLanguage,
-  setCurrentLanguage: (): void => {
-    throw Error; // to not allow empty arrow function
-  },
-};
+const LanguagesContext = createSafeContext<LanguagesContext>();
 
-export const LanguagesContext = createContext<LanguagesInitalContext>(languagesInitialContext);
+export const useLanguagesContext = LanguagesContext.hook;
 
 export const LanguagesContextProvider: React.FC = ({ children }) => {
-  const [currentLanguage, setCurrentLanguage] = useState<Language>(defaultLanguage);
+  const [currentLanguage, setCurrentLanguage] = useState(defaultLanguage);
 
-  return (
-    <LanguagesContext.Provider value={{ currentLanguage, setCurrentLanguage }}>
-      {children}
-    </LanguagesContext.Provider>
-  );
+  const value = useMemo(() => ({ currentLanguage, setCurrentLanguage }), [currentLanguage]);
+
+  return <LanguagesContext.Provider value={value}>{children}</LanguagesContext.Provider>;
 };

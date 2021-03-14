@@ -1,15 +1,15 @@
 import classNames from "classnames";
 import i18next from "i18next";
-import React, { useCallback, useContext } from "react";
+import React, { useCallback } from "react";
 import { useLocation } from "react-router-dom";
 
-import { LanguagesContext } from "../../../../core/contexts/LanguageContext";
+import { useLanguagesContext } from "../../../../core/contexts/LanguageContext";
 import { Language, allowedLanguages } from "../../../../environment";
 
 import "./Languages.scss";
 
 export const Languages = () => {
-  const { currentLanguage, setCurrentLanguage } = useContext(LanguagesContext);
+  const { currentLanguage, setCurrentLanguage } = useLanguagesContext();
   const location = useLocation();
   const isLangButtonDisabled =
     location.pathname.startsWith("/news/") || location.pathname.startsWith("/category/news");
@@ -19,6 +19,7 @@ export const Languages = () => {
       if (language === currentLanguage) {
         return;
       }
+
       i18next.changeLanguage(language);
       document.documentElement.lang = language;
       setCurrentLanguage(language);

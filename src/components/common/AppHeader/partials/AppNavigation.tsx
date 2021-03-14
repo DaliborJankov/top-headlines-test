@@ -1,21 +1,20 @@
 import classNames from "classnames";
-import React, { useContext } from "react";
+import React from "react";
 import { NavLink, matchPath, useHistory } from "react-router-dom";
 
-import { MenuContext } from "../../../../core/contexts/MenuContext";
 import { routes } from "../../../../router";
 import { useDeepTranslation } from "../../../../utils/helper";
+import { useMenuContext } from "../context/MenuContext";
 
 import "./AppNavigation.scss";
 
 export const AppNavigation = () => {
-  const { menuOpen, setMenuOpen } = useContext(MenuContext);
+  const { menuOpen, setMenuOpen } = useMenuContext();
   const { t } = useDeepTranslation("AppNavigation");
+  const history = useHistory();
   const navRoutes = routes.filter(route => route.meta?.mainMenu);
 
-  const history = useHistory();
-
-  const isNavLinkActive = (routePath: string): boolean => {
+  const isNavLinkActive = (routePath: string) => {
     const matchedPath = matchPath(history.location.pathname, {
       path: routePath,
       exact: true,

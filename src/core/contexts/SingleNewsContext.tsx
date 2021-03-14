@@ -1,27 +1,21 @@
-import React, { createContext, useState } from "react";
+import React, { useMemo, useState } from "react";
 
+import { createSafeContext } from "../../utils/helper";
 import { TopHeadlinesArticle } from "../top-headlines";
 
-interface SingleNewsInitalContext {
+interface SingleNewsContext {
   currentNews: TopHeadlinesArticle | null;
   setCurrentNews: React.Dispatch<React.SetStateAction<TopHeadlinesArticle | null>>;
 }
 
-const singleNewsInitialContext: SingleNewsInitalContext = {
-  currentNews: null,
-  setCurrentNews: (): void => {
-    throw Error; // to not allow empty arrow function
-  },
-};
+const SingleNewsContext = createSafeContext<SingleNewsContext>();
 
-export const SingleNewsContext = createContext<SingleNewsInitalContext>(singleNewsInitialContext);
+export const useSingleNewsContext = SingleNewsContext.hook;
 
 export const SingleNewsContextProvider: React.FC = ({ children }) => {
   const [currentNews, setCurrentNews] = useState<TopHeadlinesArticle | null>(null);
 
-  return (
-    <SingleNewsContext.Provider value={{ currentNews, setCurrentNews }}>
-      {children}
-    </SingleNewsContext.Provider>
-  );
+  const value = useMemo(() => ({ currentNews, setCurrentNews }), [currentNews]);
+
+  return <SingleNewsContext.Provider value={value}>{children}</SingleNewsContext.Provider>;
 };

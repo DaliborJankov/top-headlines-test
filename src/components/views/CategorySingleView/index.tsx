@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
+import { Category } from "../../../core/common";
 import { isFailed, isLoaded, isLoading } from "../../../core/common/model";
 import { useHeadlinesPerCategory } from "../../../core/hooks";
 import i18n, { defaultLanguage } from "../../../core/i18next";
@@ -10,8 +11,12 @@ import { Loader } from "../../common/Loader";
 import { NewsThumbnailList } from "../../common/NewsThumbnailList/NewsThumbnailList";
 import { ViewTemplate } from "../../common/ViewTemplate";
 
+interface RouteParams {
+  category: Category;
+}
+
 export const CategorySingleView = () => {
-  const { category } = useParams();
+  const { category } = useParams<RouteParams>();
   const { t } = useDeepTranslation();
 
   const language = isAllowedLanguage(i18n.language) ? i18n.language : defaultLanguage;

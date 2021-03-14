@@ -15,8 +15,12 @@
   &__item {
     &:not(:last-of-type) {
       padding-bottom: 2rem;
-      margin-bottom: 4rem;
+      margin-bottom: 2rem;
       border-bottom: 0.2rem solid $primary-color;
+
+      @include tablet {
+        margin-bottom: 4rem;
+      }
     }
   }
 

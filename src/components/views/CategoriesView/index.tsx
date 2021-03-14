@@ -25,20 +25,13 @@ export const CategoriesView = () => {
 
   const language = isAllowedLanguage(i18n.language) ? i18n.language : defaultLanguage;
 
-  const entertainmentArticles = useHeadlinesPerCategory(language, "entertainment");
-  const generalArticles = useHeadlinesPerCategory(language, "general");
-  const healthArticles = useHeadlinesPerCategory(language, "health");
-  const scienceArticles = useHeadlinesPerCategory(language, "science");
-  const sportsArticles = useHeadlinesPerCategory(language, "sports");
-  const technologyArticles = useHeadlinesPerCategory(language, "technology");
-
   const articlesPerCategory: Record<Category, LoadableModel<readonly TopHeadlinesArticle[]>> = {
-    entertainment: entertainmentArticles,
-    general: generalArticles,
-    health: healthArticles,
-    science: scienceArticles,
-    sports: sportsArticles,
-    technology: technologyArticles,
+    entertainment: useHeadlinesPerCategory(language, "entertainment"),
+    general: useHeadlinesPerCategory(language, "general"),
+    health: useHeadlinesPerCategory(language, "health"),
+    science: useHeadlinesPerCategory(language, "science"),
+    sports: useHeadlinesPerCategory(language, "sports"),
+    technology: useHeadlinesPerCategory(language, "technology"),
   } as const;
 
   const getCategorySection = (
@@ -49,8 +42,8 @@ export const CategoriesView = () => {
       <>
         {isFailed(articles) && (
           <ArticlesNotFound
-            text={t(`error-message`, {
-              category: `${t(`${category}`)}`,
+            text={t("error-message", {
+              category: t(category),
             })}
           />
         )}

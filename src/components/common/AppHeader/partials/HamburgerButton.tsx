@@ -1,12 +1,12 @@
 import className from "classnames";
-import React, { useContext } from "react";
+import React from "react";
 
-import { MenuContext } from "../../../../core/contexts/MenuContext";
+import { useMenuContext } from "../context/MenuContext";
 
 import "./HamburgerButton.scss";
 
 export const HamburgerButton = () => {
-  const { menuOpen, setMenuOpen } = useContext(MenuContext);
+  const { menuOpen, setMenuOpen } = useMenuContext();
 
   return (
     <button

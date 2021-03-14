@@ -1,8 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 
-import { LanguagesContext } from "../core/contexts/LanguageContext";
+import { useLanguagesContext } from "../core/contexts/LanguageContext";
 import { SingleNewsContextProvider } from "../core/contexts/SingleNewsContext";
 import { getTopHeadlines } from "../core/top-headlines";
 import { routes } from "../router";
@@ -10,7 +10,7 @@ import { AppHeader } from "./common/AppHeader";
 
 const App = () => {
   const dispatch = useDispatch();
-  const { currentLanguage } = useContext(LanguagesContext);
+  const { currentLanguage } = useLanguagesContext();
 
   useEffect(() => {
     dispatch(getTopHeadlines({ language: currentLanguage }));
