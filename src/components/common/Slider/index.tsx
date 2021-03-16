@@ -20,7 +20,7 @@ interface SliderProps {
   responsive: Record<number, number>;
 }
 
-type Operator = "minus" | "plus";
+type Operator = "prev" | "next";
 
 export const Slider: React.FC<SliderProps> = ({ responsive, children }) => {
   const sliderContainerRef = useRef<HTMLDivElement | null>(null);
@@ -70,8 +70,8 @@ export const Slider: React.FC<SliderProps> = ({ responsive, children }) => {
   }, [init]);
 
   const isDisabledButton: Record<Operator, boolean> = {
-    minus: currentTranslate === -(slidesCount - activeSlides) * moveSteper,
-    plus: currentTranslate >= 0,
+    prev: currentTranslate >= 0,
+    next: currentTranslate === -(slidesCount - activeSlides) * moveSteper,
   };
 
   const moveTrack = (operator: Operator) => {
@@ -80,7 +80,7 @@ export const Slider: React.FC<SliderProps> = ({ responsive, children }) => {
     }
 
     const newValue =
-      operator === "minus" ? currentTranslate - moveSteper : currentTranslate + moveSteper;
+      operator === "next" ? currentTranslate - moveSteper : currentTranslate + moveSteper;
 
     setCurrentTranslate(newValue);
   };
@@ -96,10 +96,10 @@ export const Slider: React.FC<SliderProps> = ({ responsive, children }) => {
   return (
     <div className="Slider">
       <button
-        onClick={() => moveTrack("plus")}
+        onClick={() => moveTrack("prev")}
         className={classNames(
           "Slider__button Slider__button--left",
-          isDisabledButton["plus"] && "Slider__button--hidden"
+          isDisabledButton["prev"] && "Slider__button--hidden"
         )}
       >
         <span className="Slider__icon Slider__icon--left" />
@@ -118,10 +118,10 @@ export const Slider: React.FC<SliderProps> = ({ responsive, children }) => {
       </div>
 
       <button
-        onClick={() => moveTrack("minus")}
+        onClick={() => moveTrack("next")}
         className={classNames(
           "Slider__button Slider__button--right",
-          isDisabledButton["minus"] && "Slider__button--hidden"
+          isDisabledButton["next"] && "Slider__button--hidden"
         )}
       >
         <span className="Slider__icon Slider__icon--right" />
