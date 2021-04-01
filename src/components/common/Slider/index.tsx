@@ -99,7 +99,7 @@ export const Slider: React.FC<SliderProps> = ({ responsive, children }) => {
         onClick={() => moveTrack("prev")}
         className={classNames(
           "Slider__button Slider__button--left",
-          isDisabledButton["prev"] && "Slider__button--hidden"
+          isDisabledButton.prev && "Slider__button--hidden"
         )}
       >
         <span className="Slider__icon Slider__icon--left" />
@@ -121,7 +121,7 @@ export const Slider: React.FC<SliderProps> = ({ responsive, children }) => {
         onClick={() => moveTrack("next")}
         className={classNames(
           "Slider__button Slider__button--right",
-          isDisabledButton["next"] && "Slider__button--hidden"
+          isDisabledButton.next && "Slider__button--hidden"
         )}
       >
         <span className="Slider__icon Slider__icon--right" />
