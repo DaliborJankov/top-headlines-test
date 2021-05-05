@@ -5,6 +5,17 @@ import { NoView } from "../components/views/NoView";
 import { SearchView } from "../components/views/SearchView";
 import { SingleNewsView } from "../components/views/SingleNewsView";
 
+type Route = "home" | "categories" | "categorySingle" | "search" | "newsSingle" | "unknownPage";
+
+export const routePaths: Record<Route, string> = {
+  home: "/",
+  categories: "/categories",
+  categorySingle: "/category/:category",
+  search: "/search",
+  newsSingle: "/news/:index",
+  unknownPage: "**",
+};
+
 export interface Routes {
   path: string;
   name: string;
@@ -14,7 +25,7 @@ export interface Routes {
 
 export const routes: Routes[] = [
   {
-    path: "/",
+    path: routePaths.home,
     name: "HomeView",
     component: HomeView,
     meta: {
@@ -22,7 +33,7 @@ export const routes: Routes[] = [
     },
   },
   {
-    path: "/categories",
+    path: routePaths.categories,
     name: "CategoriesView",
     component: CategoriesView,
     meta: {
@@ -30,12 +41,12 @@ export const routes: Routes[] = [
     },
   },
   {
-    path: "/category/:category",
+    path: routePaths.categorySingle,
     name: "CategorySingleView",
     component: CategorySingleView,
   },
   {
-    path: "/search",
+    path: routePaths.search,
     name: "SearchView",
     component: SearchView,
     meta: {
@@ -43,7 +54,7 @@ export const routes: Routes[] = [
     },
   },
   {
-    path: "/news/:index",
+    path: routePaths.newsSingle,
     name: "SingleNewsView",
     component: SingleNewsView,
   },
@@ -53,7 +64,7 @@ export const routes: Routes[] = [
     component: SingleNewsView,
   },
   {
-    path: "**",
+    path: routePaths.unknownPage,
     name: "NoView",
     component: NoView,
   },

@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { Category } from "../../../core/common";
 import { isFailed, isLoaded, isLoading } from "../../../core/common/model";
 import { useLanguagesContext } from "../../../core/contexts/LanguageContext";
-import { useHeadlines } from "../../../core/hooks";
+import { useHeadlines } from "../../../core/hooks/useHeadlines";
 import { useDeepTranslation } from "../../../utils/helper";
 import { ArticlesNotFound } from "../../common/ArticlesNotFound";
 import { Loader } from "../../common/Loader";

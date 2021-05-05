@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { Category } from "../../../core/common";
 import { LoadableModel, isFailed, isLoaded, isLoading } from "../../../core/common/model";
 import { useLanguagesContext } from "../../../core/contexts/LanguageContext";
-import { useHeadlines } from "../../../core/hooks";
+import { useHeadlines } from "../../../core/hooks/useHeadlines";
 import { TopHeadlinesArticle } from "../../../core/top-headlines";
 import { useDeepTranslation } from "../../../utils/helper";
 import { ArticlesNotFound } from "../../common/ArticlesNotFound";
