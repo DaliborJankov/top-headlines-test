@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useSingleNewsContext } from "../../../core/contexts/SingleNewsContext";
-import { useDeepTranslation } from "../../../utils/helper";
+import { useDeepTranslation } from "../../../core/hooks/useDeepTranslation";
 import { GoBack } from "../../common/GoBack";
 import { ViewTemplate } from "../../common/ViewTemplate";
 

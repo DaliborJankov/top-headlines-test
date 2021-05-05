@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
-import { useDeepTranslation } from "../../../utils/helper";
+import { useDeepTranslation } from "../../../core/hooks/useDeepTranslation";
 
 import "./GoBack.scss";
 

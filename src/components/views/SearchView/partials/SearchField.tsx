@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useDeepTranslation } from "../../../../utils/helper";
+import { useDeepTranslation } from "../../../../core/hooks/useDeepTranslation";
 
 import "./SearchField.scss";
 

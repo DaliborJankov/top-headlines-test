@@ -4,8 +4,8 @@ import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 
 import { isFailed, isLoaded, isLoading } from "../../../core/common/model";
 import { useLanguagesContext } from "../../../core/contexts/LanguageContext";
+import { useDeepTranslation } from "../../../core/hooks/useDeepTranslation";
 import { useHeadlines } from "../../../core/hooks/useHeadlines";
-import { useDeepTranslation } from "../../../utils/helper";
 import { ArticlesNotFound } from "../../common/ArticlesNotFound";
 import { Loader } from "../../common/Loader";
 import { NewsThumbnailList } from "../../common/NewsThumbnailList/NewsThumbnailList";

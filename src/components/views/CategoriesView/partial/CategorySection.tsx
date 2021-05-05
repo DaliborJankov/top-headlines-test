@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { Category } from "../../../../core/common";
+import { useDeepTranslation } from "../../../../core/hooks/useDeepTranslation";
 import { TopHeadlinesArticle } from "../../../../core/top-headlines";
-import { useDeepTranslation } from "../../../../utils/helper";
 import { NewsThumbnail } from "../../../common/NewsThumbnail";
 import { NewsThumbnailList } from "../../../common/NewsThumbnailList/NewsThumbnailList";
 import { Slider } from "../../../common/Slider";

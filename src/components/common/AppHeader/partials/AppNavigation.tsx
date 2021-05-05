@@ -2,8 +2,8 @@ import classNames from "classnames";
 import React from "react";
 import { NavLink, matchPath, useHistory } from "react-router-dom";
 
+import { useDeepTranslation } from "../../../../core/hooks/useDeepTranslation";
 import { routes } from "../../../../router";
-import { useDeepTranslation } from "../../../../utils/helper";
 import { useMenuContext } from "../context/MenuContext";
 
 import "./AppNavigation.scss";

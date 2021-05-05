@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { useSingleNewsContext } from "../../../core/contexts/SingleNewsContext";
+import { useDeepTranslation } from "../../../core/hooks/useDeepTranslation";
 import { TopHeadlinesArticle } from "../../../core/top-headlines";
-import { useDeepTranslation } from "../../../utils/helper";
 
 import "./NewsThumbnail.scss";
 
